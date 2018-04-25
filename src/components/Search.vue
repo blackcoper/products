@@ -1,7 +1,7 @@
 <template>
   <div class="search-container">
     Search input here
-    <input type="text" :value="value" @input="updateData()">
+    <input type="text" ref="searchInput" :value="value" @input="updateData()">
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   ],
   methods: {
     updateData () {
-      this.$emit('input', )
+      this.$emit('input', this.$refs.searchInput.value)
     }
   }
 }
