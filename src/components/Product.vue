@@ -2,10 +2,10 @@
   <div class="products">
     <div class="product">
       <div>
-        <highlightText>
+        <highlightText :htext="productName">
         </highlightText>
       </div>
-      <div>Price here</div>
+      <div>{{ productPrice }}</div>
     </div>
   </div>
 </template>
@@ -15,6 +15,10 @@ import HighlightText from './HighlightText'
 
 export default {
   name: 'product',
+  props: [
+    'productName',
+    'productPrice'
+  ],
   components: {
     HighlightText
   }

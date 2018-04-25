@@ -1,12 +1,15 @@
 <template>
   <p>
-    highlight text component
+    {{ htext }}
   </p>
 </template>
 
 <script>
 export default {
-  name: 'highlightText'
+  name: 'highlightText',
+  props: [
+    'htext'
+  ]
 }
 </script>
 

@@ -1,14 +1,15 @@
 <template>
   <div>
     <search v-model="searchText"></search>
-    <product></product>
+    <product v-for="product in productData" :productName="product.name" :productPrice="product.price"></product>
+    {{ productData }}
   </div>
 </template>
 
 <script>
 import Product from '../components/Product'
 import Search from '../components/Search'
-// import { request } from '../utils' // use to get data
+import { request } from '../utils' // use to get data
 
 export default {
   name: 'list',
@@ -18,12 +19,17 @@ export default {
   },
   data () {
     return {
-      searchText: ''
+      searchText: '',
+      productData: []
     }
   },
   watch: {
     searchText (newVal) {
-      console.log(newVal)
+      request('/api/products').then((res) => {
+        this.productData = res.data.filter((x) => {
+          return true
+        })
+      })
     }
   }
 }
