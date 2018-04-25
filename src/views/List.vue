@@ -33,9 +33,14 @@ export default {
   methods: {
     fetchData () {
       request('/api/products').then((res) => {
-        this.productData = res.data.filter((x) => {
-          return (x.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
-        })
+        if (res.success) {
+          this.productData = res.data.filter((x) => {
+            return (x.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
+          })
+          if (this.productData.length === 0) {
+            this.productData = res.data
+          }
+        }
       })
     }
   }
