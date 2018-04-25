@@ -2,7 +2,7 @@
   <div class="products">
     <div class="product">
       <div>
-        <highlightText :htext="productName">
+        <highlightText :htext="productName" :searchText="propSearchText">
         </highlightText>
       </div>
       <div>{{ productPrice }}</div>
@@ -17,7 +17,8 @@ export default {
   name: 'product',
   props: [
     'productName',
-    'productPrice'
+    'productPrice',
+    'propSearchText'
   ],
   components: {
     HighlightText

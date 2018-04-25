@@ -1,6 +1,6 @@
 <template>
   <p>
-    {{ htext }}
+    {{ htext }} {{ searchText }}
   </p>
 </template>
 
@@ -8,7 +8,8 @@
 export default {
   name: 'highlightText',
   props: [
-    'htext'
+    'htext',
+    'searchText'
   ]
 }
 </script>

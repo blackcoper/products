@@ -1,7 +1,7 @@
 <template>
   <div>
     <search v-model="searchText"></search>
-    <product v-for="product in productData" :productName="product.name" :productPrice="product.price" :key="product.id"></product>
+    <product v-for="product in productData" :productName="product.name" :productPrice="product.price" :key="product.id" :propSearchText="searchText"></product>
   </div>
 </template>
 
@@ -22,11 +22,19 @@ export default {
       productData: []
     }
   },
+  created () {
+    this.fetchData()
+  },
   watch: {
-    searchText (newVal) {
+    searchText () {
+      this.fetchData()
+    }
+  },
+  methods: {
+    fetchData () {
       request('/api/products').then((res) => {
         this.productData = res.data.filter((x) => {
-          return (x.name.toLowerCase().indexOf(newVal.toLowerCase()) > -1)
+          return (x.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
         })
       })
     }
