@@ -1,6 +1,6 @@
 <template>
   <div class="products">
-    <div class="product" v-for="product in productData" :key="product.id">
+    <div class="product" v-for="product in productData" :key="product.id" v-on:click="pageDetail(product.id)">
       <div>
         <highlightText :htext="product.name" :searchText="propSearchText">
         </highlightText>
@@ -21,6 +21,11 @@ export default {
   ],
   components: {
     HighlightText
+  },
+  methods: {
+    pageDetail (productId) {
+      this.$router.push({ name: 'Detail', params: { id: productId } })
+    }
   }
 }
 </script>
