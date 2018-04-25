@@ -5,11 +5,6 @@
 <script>
 export default {
   name: 'highlightText',
-  data () {
-    return {
-      highlighted: this.htext
-    }
-  },
   props: [
     'htext',
     'searchText'
@@ -22,11 +17,6 @@ export default {
       return this.htext.replace(new RegExp(this.searchText, 'gi'), match => {
         return '<span class="highlight">' + match + '</span>'
       })
-    }
-  },
-  watch: {
-    searchText () {
-      this.highlight()
     }
   }
 }
