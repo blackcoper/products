@@ -1,7 +1,7 @@
 <template>
   <div>
     <search v-model="searchText"></search>
-    <product :productData="productData"></product>
+    <product :productData="productData" :propSearchText="searchText"></product>
   </div>
 </template>
 
