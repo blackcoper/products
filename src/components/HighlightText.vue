@@ -1,21 +1,41 @@
 <template>
-  <p>
-    {{ htext }} {{ searchText }}
-  </p>
+  <p v-html="highlighted"></p>
 </template>
 
 <script>
 export default {
   name: 'highlightText',
+  data () {
+    return {
+      highlighted: ''
+    }
+  },
   props: [
     'htext',
     'searchText'
-  ]
+  ],
+  methods: {
+    highlight () {
+      console.log(this.searchText)
+      if (!this.searchText) {
+        this.highlighted = this.htext
+      } else {
+        this.highlighted = this.htext.replace(new RegExp(this.searchText, 'gi'), match => {
+          return '<span class="highlight">' + match + '</span>'
+        })
+      }
+    }
+  },
+  watch: {
+    searchText () {
+      this.highlight()
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
   span {
     display:inline-block;
   }
