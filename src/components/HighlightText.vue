@@ -1,20 +1,12 @@
 <template>
   <p>
-    {{ name }}
+    highlight text component
   </p>
 </template>
 
 <script>
 export default {
-  name: 'highlightText',
-  data: {
-    name: ''
-  },
-  watch: {
-    productname: function (val) {
-      this.name = val
-    }
-  }
+  name: 'highlightText'
 }
 </script>
 

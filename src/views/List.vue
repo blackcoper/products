@@ -1,6 +1,6 @@
 <template>
   <div>
-    <search></search>
+    <search v-model="searchText"></search>
     <product></product>
   </div>
 </template>
@@ -12,16 +12,18 @@ import Search from '../components/Search'
 
 export default {
   name: 'list',
-
   components: {
     Product,
     Search
   },
-
-  methods: {
-    searchProduct: () => {
-      // request ();
-      console.log(this.name)
+  data () {
+    return {
+      searchText: ''
+    }
+  },
+  watch: {
+    searchText (newVal) {
+      console.log(newVal)
     }
   }
 }

@@ -1,15 +1,19 @@
 <template>
   <div class="search-container">
-    <input v-on:change="searchProduct" v-model="name" class="search"/>
+    Search input here
+    <input type="text" :value="value" @input="updateData()">
   </div>
 </template>
 
 <script>
 export default {
   name: 'search',
-  data () {
-    return {
-      name: ''
+  props: [
+    'value'
+  ],
+  methods: {
+    updateData () {
+      this.$emit('input', )
     }
   }
 }
