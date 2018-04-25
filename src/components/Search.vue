@@ -1,7 +1,6 @@
 <template>
   <div class="search-container">
-    Search input here
-    <input type="text" ref="searchInput" :value="value" @input="updateData()">
+    <input type="text" ref="searchInput" :value="value" @input="updateData()" class="search">
   </div>
 </template>
 

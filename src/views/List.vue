@@ -30,6 +30,13 @@ export default {
           return true
         })
       })
+      request('/api/products').then((res) => {
+        var arr = []
+        res.data.filter((x) => {
+          if (x.name.toLowerCase().indexOf(newVal.toLowerCase()) > -1) arr.push(x)
+        })
+        console.dir(arr)
+      })
     }
   }
 }
