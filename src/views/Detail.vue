@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <img src="/logo.png" alt="">
+    <img src="/logo.png" alt="Gambar HP">
     <div>{{ price }}</div>
   </div>
 </template>
@@ -11,9 +11,17 @@ import { request } from '../utils'
 
 export default {
   name: 'detail',
+  data () {
+    return {
+      productId: this.$route.params.id,
+      title: '',
+      price: ''
+    }
+  },
   created () {
-    request(`/api/products/1`)
-      .then(res => {
+    console.log(this.productId)
+    request(`/api/products/_productId`)
+      .then((res) => {
         if (res.success) {
           this.title = res.data.name
           this.price = res.data.price
