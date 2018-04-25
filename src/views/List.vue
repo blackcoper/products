@@ -19,11 +19,17 @@ export default {
   data () {
     return {
       searchText: '',
-      productData: []
+      productData: [],
+      productDataDefault: []
     }
   },
   created () {
-    this.fetchData()
+    request('/api/products').then((res) => {
+      if (res.success) {
+        this.productDataDefault = res.data
+        this.fetchData()
+      }
+    })
   },
   watch: {
     searchText () {
@@ -32,16 +38,12 @@ export default {
   },
   methods: {
     fetchData () {
-      request('/api/products').then((res) => {
-        if (res.success) {
-          this.productData = res.data.filter((x) => {
-            return (x.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
-          })
-          if (this.productData.length === 0) {
-            this.productData = res.data
-          }
-        }
+      this.productData = this.productDataDefault.filter((x) => {
+        return (x.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
       })
+      if (this.productData.length === 0) {
+        this.productData = this.productDataDefault
+      }
     }
   }
 }
