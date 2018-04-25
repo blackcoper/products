@@ -2,7 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <img src="/static/iphone-7-plus-black_4.jpg" alt="Gambar HP">
-    <div>{{ price }}</div>
+    <div class="price">{{ price }}</div>
   </div>
 </template>
 
