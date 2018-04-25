@@ -1,6 +1,8 @@
 <template>
   <div>
-    detail view
+    <h1>{{ title }}</h1>
+    <img src="/logo.png" alt="">
+    <div>{{ price }}</div>
   </div>
 </template>
 
@@ -9,12 +11,12 @@ import { request } from '../utils'
 
 export default {
   name: 'detail',
-
   created () {
     request(`/api/products/1`)
       .then(res => {
         if (res.success) {
-          console.log(res.data)
+          this.title = res.data.name
+          this.price = res.data.price
         }
       })
   }
