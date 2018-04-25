@@ -1,11 +1,11 @@
 <template>
   <div class="products">
-    <div class="product">
+    <div class="product" v-for="product in productData" :key="product.id">
       <div>
-        <highlightText :htext="productName" :searchText="propSearchText">
+        <highlightText :htext="product.name" :searchText="propSearchText">
         </highlightText>
       </div>
-      <div>{{ productPrice }}</div>
+      <div>{{ product.price }}</div>
     </div>
   </div>
 </template>
@@ -16,8 +16,7 @@ import HighlightText from './HighlightText'
 export default {
   name: 'product',
   props: [
-    'productName',
-    'productPrice',
+    'productData',
     'propSearchText'
   ],
   components: {
