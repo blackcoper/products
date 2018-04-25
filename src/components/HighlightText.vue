@@ -1,5 +1,7 @@
 <template>
-  <p v-html="highlighted"></p>
+  <p>
+    {{ pre }}<span class="highlight">{{ match }}</span>{{ end }}
+  </p>
 </template>
 
 <script>
@@ -7,7 +9,9 @@ export default {
   name: 'highlightText',
   data () {
     return {
-      highlighted: this.htext
+      pre: this.htext,
+      end: '',
+      match: ''
     }
   },
   props: [
@@ -17,11 +21,18 @@ export default {
   methods: {
     highlight () {
       if (!this.searchText) {
-        this.highlighted = this.htext
+        this.pre = this.htext
+        this.match = ''
+        this.end = ''
       } else {
-        this.highlighted = this.htext.replace(new RegExp(this.searchText, 'gi'), match => {
-          return '<span class="highlight">' + match + '</span>'
-        })
+        var index = this.htext.toLowerCase().indexOf(this.searchText.toLowerCase())
+        if (index >= 0) {
+          this.pre = this.htext.substring(0, index)
+          this.htext.replace(new RegExp(this.searchText, 'gi'), match => {
+            this.match = match
+          })
+          this.end = this.htext.substring(index + this.match.length)
+        }
       }
     }
   },
@@ -34,11 +45,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-  span {
-    display:inline-block;
-  }
-
+<style scoped>
   span.highlight {
     color: #108EE9;
   }
