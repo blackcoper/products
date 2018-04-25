@@ -8,7 +8,7 @@
 <script>
 import Product from '../components/Product'
 import Search from '../components/Search'
-// import { request } from '../utils' // use to get data
+import { request } from '../utils' // use to get data
 
 export default {
   name: 'list',
@@ -24,6 +24,13 @@ export default {
   watch: {
     searchText (newVal) {
       console.log(newVal)
+      request('/api/products').then((res) => {
+        var arr = []
+        res.data.filter((x) => {
+          if (x.name.toLowerCase().indexOf(newVal.toLowerCase()) > -1) arr.push(x)
+        })
+        console.dir(arr)
+      })
     }
   }
 }
