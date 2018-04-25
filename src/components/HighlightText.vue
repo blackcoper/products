@@ -7,7 +7,7 @@ export default {
   name: 'highlightText',
   data () {
     return {
-      highlighted: ''
+      highlighted: this.htext
     }
   },
   props: [
@@ -16,7 +16,6 @@ export default {
   ],
   methods: {
     highlight () {
-      console.log(this.searchText)
       if (!this.searchText) {
         this.highlighted = this.htext
       } else {
